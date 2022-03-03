@@ -1,27 +1,28 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
-# Creamos la calse "Blog"
-class Blog(models.Model):
-    titulo=models.CharField(max_length=30)
-    subtitulo=models.CharField(max_length=30)
-    imagen=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-
-# Creamos la calse "Usuario"
 class Usuario(models.Model):
-    nombre=models.CharField(max_length=30)
-    apellido=models.CharField(max_length=30)
-    nickname=models.CharField(max_length=30)
-    email=models.EmailField()
-    ciudad=models.CharField(max_length=30)
-    edad=models.IntegerField()
-    alta=models.DateField()
+    id=models.AutoField(primary_key= True)
+    nombre_usuario=models.CharField('Nombre de usuario', max_length=30, null= False, blank= False)
+    apellido_usuario=models.CharField('Apellido de usuario', max_length=30, null= False, blank= False)
+    #nickname=models.CharField(max_length=30)
+    email=models.EmailField('Correo electronico',null= False, blank= False)
+    #ciudad=models.CharField(max_length=30)
+    #edad=models.IntegerField()
+    #alta=models.DateField()
 
-# Creamos la calse "Mensaje"
-class Mensaje(models.Model):
-    titulo=models.CharField(max_length=30)
-    contenido=models.TextField(max_length=100)
-    fecha=models.DateField()
-    deNombre=models.CharField(max_length=30)
-    deEmail=models.EmailField()
-    paraNombre=models.CharField(max_length=30)
-    paraEmail=models.EmailField()
+    def __str__(self):
+        return "{0},{1}".format(self.apellido_usuario, self.nombre_usuario)
+
+class Post(models.Model):
+    id=models.AutoField(primary_key= True)
+    titulo=models.CharField('Titulo',max_length=50,null= False, blank= False)
+    #subtitulo=models.CharField(max_length=30)
+    slug=models.CharField('Slug',max_length=100,null= False, blank= False)
+    contenido=RichTextField()
+    imagen=models.URLField(max_length=300, null= False, blank= False)
+    autor=models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    fecha_creacion=models.DateField('Fecha de creación', auto_now=False, auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo
