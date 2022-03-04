@@ -22,4 +22,5 @@ def detallepost(request, slug):
     post =Post.objects.get(
         slug = slug
     )
-    return render(request, 'AppViajes/post.html', {'Detalle_post':post})
+    mensajes=["hola","buen dia"]
+    return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes })

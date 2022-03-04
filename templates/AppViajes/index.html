@@ -101,7 +101,7 @@
                                     <p class="post-meta">
                                         Escrito por
                                         <a href="#!">{{post.autor}}</a> el
-                                        {{post.fecha_creacion}}
+                                        {{post.fecha_creacion |date:"d-m-y"}}
                                     </p>
                                 </div>
                             {% endfor %}    
