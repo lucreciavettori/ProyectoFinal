@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Mensaje
+from AppViajes.forms import MensajeFormulario
 from django.db.models import Q
 
 # Create your views here.
@@ -13,7 +14,10 @@ def pages(request):
     
     if busqueda:
         posts = Post.objects.filter(
-            Q(titulo__icontains = busqueda))
+            Q(titulo__icontains = busqueda) |
+            Q(contenido__icontains = busqueda) |
+            Q(subtitulo__icontains = busqueda)
+             ).distinct()
 
         
     return render(request, 'AppViajes/index.html', {'posts':posts})
@@ -23,4 +27,28 @@ def detallepost(request, slug):
         slug = slug
     )
     mensajes=["hola","buen dia"]
-    return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes })
+   
+    if request.method == 'POST':
+        
+        miFormulario = MensajeFormulario(request.POST)
+        
+        print(miFormulario)
+        
+        if miFormulario.is_valid:
+            
+            informacion = miFormulario.data
+            
+            r_autor = informacion['autor']
+            r_mensaje = informacion['mensaje']
+        
+            mensaje= Mensaje(autor_mensaje=r_autor, mensaje=r_mensaje)
+            mensaje.save()
+    
+    miFormulario = MensajeFormulario()
+
+    return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes,'miFormulario': miFormulario})
+
+
+    
+
+    
