@@ -33,7 +33,7 @@ class Mensaje(models.Model):
     id=models.AutoField(primary_key= True)
     autor_mensaje=models.ForeignKey(Usuario, on_delete=models.CASCADE)
     mensaje=models.TextField('Mensaje',max_length=100,null= False, blank= False)
-    digigido_a=models.ForeignKey(Post, on_delete=models.CASCADE)
+    dirigido_a=models.ForeignKey(Post, on_delete=models.CASCADE)
     fecha_creacion_mensaje=models.DateField('Fecha de creación', auto_now=False, auto_now_add=True)
 
     def __str__(self):
