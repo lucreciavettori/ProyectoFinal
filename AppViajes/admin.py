@@ -5,7 +5,7 @@ from AppViajes.models import *
 
 admin.site.register(Post)
 
-admin.site.register(Usuario)
+#admin.site.register(Usuario)
 
 admin.site.register(Mensaje)
 

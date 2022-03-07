@@ -28,8 +28,23 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Pages</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About us</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Login' %}">Log in</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Register' %}">Register</a></li>
+                                                
+                        <!-- Si el usuario NO está logeado mostrar el boton Login -->
+                        {% if not request.user.is_authenticated %}
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Login' %}">Login</a></li>
+
+                        {% endif %}
+
+                        <!-- Si el usuario SI está logeado mostrar el nombre de usuario -->
+
+                        {% if request.user.is_authenticated %}
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Logout' %}">Log out</a></li>
+
+                        {% endif %}
+                        
                     </ul>
                 </div>
             </div>
