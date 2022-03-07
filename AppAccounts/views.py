@@ -7,11 +7,11 @@ from django.contrib.auth import login, logout, authenticate
 from .forms import UserRegisterForm
 from django.contrib.auth.models import User
 
-# Create your views here.
 
 def login_request (request):
 
     if request.method=='POST':
+        #validar el usuario
         form = AuthenticationForm(request, data=request.POST)
 
         if form.is_valid():
@@ -22,14 +22,9 @@ def login_request (request):
 
             if user:
                 login(request,user)
-                try:
-                    user_new=User.objects.get(username=usuario)
-                except django.contrib.auth.models.User.DoesNotExist:
-                    user_new=None
                 
-                if not user_new:
-
-                    return redirect('http://127.0.0.1:8000/AppViajes/Pages')
+                return redirect('http://127.0.0.1:8000/AppViajes/inicio')
+           
             else:
                 return redirect('http://127.0.0.1:8000/AppViajes/account/login')
 
