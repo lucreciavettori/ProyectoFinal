@@ -11,6 +11,7 @@ app_name = 'AppViajes'
 urlpatterns = [
     path('inicio/',inicio ,name="Inicio"),
     path('pages/',pages ,name="Pages"),
+    path('mensajes/',detallemensajes ,name="Mensajes"),
     path('<str:slug>/', detallepost,name="Detalle_post"),
     path('account/login/', login_request,name="Login"),
     path('account/logout/', LogoutView.as_view(template_name='AppAccounts/logout.html'),name="Logout"),

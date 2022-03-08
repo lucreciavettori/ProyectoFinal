@@ -28,8 +28,19 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Pages</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About us</a></li>
+                        
+                         <!-- Si el usuario NO está logeado NO mostrar el boton Mensajes -->
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Mensajes' %}">Mensajes</a></li>
+                        {% endif %} 
+
+
+
+                        <!-- Si el usuario está logeado NO mostrar el boton Register -->
+                        {% if not request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Register' %}">Register</a></li>
-                                                
+                        {% endif %}                       
+                        
                         <!-- Si el usuario NO está logeado mostrar el boton Login -->
                         {% if not request.user.is_authenticated %}
 
@@ -40,6 +51,8 @@
                         <!-- Si el usuario SI está logeado mostrar el nombre de usuario -->
 
                         {% if request.user.is_authenticated %}
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4"> Bienvenido {{user.username}} </a> </li>
 
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Logout' %}">Log out</a></li>
 
@@ -89,7 +102,7 @@
 
                   <i class="icon icon-search"></i>
 
-                  <button type="submit" class="boton btn-success" style="background-color:blue; border-color:blue">Buscar</button>
+                  <button type="submit" class="boton btn-success" style="background-color:blue; border-color:blue"><FONT FACE="arial">Buscar</button></font>
 
                 </span>
 
@@ -112,7 +125,7 @@
                                         <h2 class="post-title">
                                             {{post.titulo}}
                                         </h2>
-                                        <h5 class="post-subtitulo">
+                                        <h5 style="color:#808000" class="post-subtitulo">
                                             {{post.subtitulo}}
                                         </h5>
                                     

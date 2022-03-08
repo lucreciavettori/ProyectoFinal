@@ -26,20 +26,28 @@
 
 {{Detalle_post.contenido | safe}}
 
+<h5 style="color:#808000">Mensajes:</h5>
+
 {% for mensaje in mensajes %}
-<p>{{mensaje}}</p>
+          <h5>{{mensaje}}</h5>
+          <FONT FACE="Ink free">Enviado por: {{mensaje.autor_mensaje}} el: {{mensaje.fecha_creacion_mensaje}}</FONT>
 {% endfor %}
 
+<br>
+
+</br>
 {% if request.user.is_authenticated %}
-<h4>Deja tus comentarios aqui:</h4>
-    <form action="" method="POST" > {% csrf_token%}
 
-        <table>
-            {{miFormulario.as_table}}
-        </table>
+<h5 style="color:#808000">Deja tus comentarios aqui:</h5>
 
-        <input type="submit" value="Enviar"/>
-    </form>
+<form action="{{request.path}}" method="POST" > 
+    {% csrf_token%}
+ 
+    {{miFormulario.as_p}}
+
+    <FONT FACE="arial"><input type="submit" value="Enviar" /></FONT>
+</form>
 {% endif %}
+
 
 {%endblock contenido%}

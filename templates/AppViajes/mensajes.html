@@ -1,0 +1,22 @@
+
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+{% block titulo_principal%}
+Mensajes
+{% endblock titulo_principal %}
+
+{% block imagen %}
+
+{% static 'AppViajes/assets/img/mensajes.webp'%}
+
+{% endblock imagen %}
+
+{%block contenido%}
+
+{{Detalle_mensaje.mensaje}}
+
+{%endblock contenido%}
+
+{%block busqueda%}
+{%endblock busqueda%}
