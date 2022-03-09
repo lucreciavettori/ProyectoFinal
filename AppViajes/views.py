@@ -1,8 +1,11 @@
+from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from .models import Post, Mensaje
 from AppViajes.forms import MensajeFormulario
 from django.db.models import Q
-from django.views.generic.edit import FormMixin
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView,DeleteView, UpdateView
 
 # Create your views here.
 
@@ -40,20 +43,23 @@ def detallepost(request, slug):
         if miFormulario.is_valid:
             usuario= request.user
             mensaje =miFormulario.cleaned_data.get("mensaje")
-            destinatario=Post.objects.filter(titulo=post.titulo)
-            mensaje= Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje, dirigido_a=destinatario)
+            mensaje= Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje)
         else:
             return super().form_invalid(miFormulario)
         return super().form_valid(miFormulario)
     miFormulario = MensajeFormulario()
 
     return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes, 'miFormulario': miFormulario})
+ 
+class detallemensajes(ListView):
+    model=Mensaje
+    template_name='AppViajes/mensajes.html'
+    fields=['mensaje','autor_mensaje']
+
+    def get_queryset(self):
+        return Post.objects.filter(autor=self.request.user)
+
+
+
 
     
-def detallemensajes(request):
-
-    return render(request, 'AppViajes/mensajes.html')  
-
-
-
-

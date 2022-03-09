@@ -26,15 +26,23 @@
 
 {{Detalle_post.contenido | safe}}
 
+<br>
+</br>
 <h5 style="color:#808000">Mensajes:</h5>
+
+{% if mensajes %}
 
 {% for mensaje in mensajes %}
           <h5>{{mensaje}}</h5>
           <FONT FACE="Ink free">Enviado por: {{mensaje.autor_mensaje}} el: {{mensaje.fecha_creacion_mensaje}}</FONT>
 {% endfor %}
+{% else %}
+
+    <h6 p>No hay mensajes registrados.</h6></p>
+
+{% endif %}
 
 <br>
-
 </br>
 {% if request.user.is_authenticated %}
 
