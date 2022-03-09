@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout</title>
+<head>
+
+<body>
+    {% extends 'AppViajes/index.html'%}
+    {% load static %}
+    
+    {% block titulo_principal%}
+    <h2>Gracias por visitar nuestro sitio. ¡Hasta pronto!</h2>
+    
+    {% endblock titulo_principal %}
+    
+    {% block imagen %}
+    
+    {% static 'AppViajes/assets/img/fondo3.jpg'%}
+    
+    {% endblock imagen %}
+    
+    {%block contenido%}
+    
+    <h5><center> <FONT FACE="Ink free">Cortos, largos, planeados, sin rumbos, lo importante es VIAJAR!</center></FONT></h5>
+    {%endblock contenido%}
+    
+    {%block busqueda%}
+    {%endblock busqueda%}
+<body>
+<html>

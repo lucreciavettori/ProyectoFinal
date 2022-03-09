@@ -1,12 +1,17 @@
+from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from .models import Post, Mensaje
 from AppViajes.forms import MensajeFormulario
 from django.db.models import Q
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView,DeleteView, UpdateView
 
 # Create your views here.
 
 def inicio(request):
     return render (request, 'AppViajes/inicio.html')
+
 
 def pages(request):
     busqueda=request.GET.get("buscar")
@@ -26,29 +31,34 @@ def detallepost(request, slug):
     post =Post.objects.get(
         slug = slug
     )
-    mensajes=["hola","buen dia"]
+    
+    mensajes=Mensaje.objects.filter(dirigido_a=post.id)
    
+    #para el formualrio:
+    
     if request.method == 'POST':
-        
         miFormulario = MensajeFormulario(request.POST)
-        
         print(miFormulario)
         
         if miFormulario.is_valid:
-            
-            informacion = miFormulario.data
-            
-            r_autor = informacion['autor']
-            r_mensaje = informacion['mensaje']
-        
-            mensaje= Mensaje(autor_mensaje=r_autor, mensaje=r_mensaje)
-            mensaje.save()
-    
+            usuario= request.user
+            mensaje =miFormulario.cleaned_data.get("mensaje")
+            mensaje= Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje)
+        else:
+            return super().form_invalid(miFormulario)
+        return super().form_valid(miFormulario)
     miFormulario = MensajeFormulario()
 
-    return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes,'miFormulario': miFormulario})
+    return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes, 'miFormulario': miFormulario})
+ 
+class detallemensajes(ListView):
+    model=Mensaje
+    template_name='AppViajes/mensajes.html'
+    fields=['mensaje','autor_mensaje']
+
+    def get_queryset(self):
+        return Mensaje.objects.filter(dirigido_a=self.request.user)
 
 
-    
 
     

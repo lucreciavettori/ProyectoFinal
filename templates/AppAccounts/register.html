@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+{% block titulo_principal%}
+<span class="subheading">Completá los campos debajo para registrarte en nuestra página.</span>
+{% endblock titulo_principal %}
+
+{% block imagen %}
+
+{% endblock imagen %}
+
+{%block contenido%}
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+<head>
+
+<body>
+    <form method="post">{%csrf_token%}
+        {{form.as_p}}
+
+        <input type="submit" value="Enviar">
+
+    <form>
+<body>
+<html>
+
+{%endblock contenido%}
+
+{%block busqueda%}
+{%endblock busqueda%}
+
+
+

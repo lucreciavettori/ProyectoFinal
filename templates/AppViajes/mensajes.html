@@ -1,0 +1,36 @@
+
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+{% block titulo_principal%}
+Mensajes
+{% endblock titulo_principal %}
+
+{% block imagen %}
+
+{% static 'AppViajes/assets/img/mensajes.webp'%}
+
+{% endblock imagen %}
+
+{%block contenido%}
+{% if object_list %}
+<h5 style="color:#808000">Estos son los mensajes que los usuarios hicieron a tus blog:</h5>
+<p>
+</p>
+
+    {% for mensaje in object_list %}
+    <p>
+    <h5>{{mensaje.dirigido_a}}</h5>
+   <h6>{{mensaje.mensaje}}</h6>
+    <FONT FACE="Ink free">Enviado por: {{mensaje.autor_mensaje}} el: {{mensaje.fecha_creacion_mensaje}}</FONT>
+    </p>
+    {% endfor %}
+{% else %}
+    <h3 p>No hay mensajes registrados en sus posts.</h3></p>
+  {% endif %}
+
+
+{%endblock contenido%}
+
+{%block busqueda%}
+{%endblock busqueda%}
