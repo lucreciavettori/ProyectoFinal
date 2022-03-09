@@ -57,8 +57,7 @@ class detallemensajes(ListView):
     fields=['mensaje','autor_mensaje']
 
     def get_queryset(self):
-        return Post.objects.filter(autor=self.request.user)
-
+        return Mensaje.objects.filter(dirigido_a=self.request.user)
 
 
 

@@ -10,4 +10,3 @@ class MensajeFormulario(forms.Form):
         "placeholder":"Escribe tu mensaje"
     }))
 
-    

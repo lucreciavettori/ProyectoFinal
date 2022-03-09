@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from AppViajes.views import *
 from AppAccounts.views import login_request, register
+   
 
 app_name = 'AppViajes' 
 
@@ -16,5 +17,4 @@ urlpatterns = [
     path('account/login/', login_request,name="Login"),
     path('account/logout/', LogoutView.as_view(template_name='AppAccounts/logout.html'),name="Logout"),
     path('account/register/', register,name="Register"),
-
 ]
