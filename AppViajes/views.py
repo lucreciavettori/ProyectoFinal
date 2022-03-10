@@ -1,8 +1,7 @@
 from dataclasses import fields
 from multiprocessing import AuthenticationError
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from AppViajes.forms import PostForm
+from django.shortcuts import  render
+
 from .models import Post, Mensaje
 from AppViajes.forms import MensajeFormulario
 from django.db.models import Q
@@ -70,9 +69,9 @@ class ListarPost(ListView):
 
 class CrearPost(CreateView):
     model= Post
-    form_class= PostForm
-    template_name= 'AppViajes/crear_post.html'
-    success_url = reverse_lazy("AppViajes: listar_post")
+    #form_class= PostForm
+    success_url = '/AppViajes/listar_post'
+    fields=['titulo', 'subtitulo', 'slug', 'contenido','imagen','autor']
    
 
     
