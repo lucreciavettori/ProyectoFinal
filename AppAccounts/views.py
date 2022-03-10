@@ -23,13 +23,13 @@ def login_request (request):
             if user:
                 login(request,user)
                 
-                return redirect('http://127.0.0.1:8000/AppViajes/inicio')
+                return redirect('AppViajes:Inicio')
            
             else:
-                return redirect('http://127.0.0.1:8000/AppViajes/account/login')
+                return redirect('AppViajes:Login')
 
         else:
-            return redirect('http://127.0.0.1:8000/AppViajes/account/login')
+            return redirect('AppViajes:Login')
         
     form = AuthenticationForm()
 
@@ -52,7 +52,7 @@ def register(request):
                 
                 form.save()
 
-            return redirect('http://127.0.0.1:8000/AppViajes/account/login')
+            return redirect('AppViajes:Login')
     
     else:
         form=UserRegisterForm(request.POST)

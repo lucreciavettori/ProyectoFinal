@@ -49,7 +49,7 @@
 <h5 style="color:#808000">Deja tus comentarios aqui:</h5>
 
 <form action="{{request.path}}" method="POST" > {% csrf_token%}
- 
+
     {{miFormulario.as_p}}
 
     <FONT FACE="Segoe Print"><input type="submit" value="Enviar" /></FONT>

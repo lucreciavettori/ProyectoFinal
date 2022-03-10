@@ -49,12 +49,14 @@ def detallepost(request, slug):
     return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes, 'miFormulario': miFormulario})
  
 class detallemensajes(ListView):
-    model=Mensaje
-    template_name='AppViajes/mensajes.html'
-    fields=['mensaje','autor_mensaje','fecha_creacion_mensaje']
+    model = Mensaje
+    template_name = 'AppViajes/mensajes.html'
 
-    def get_queryset(self):
-        return Mensaje.objects.filter(dirigido_a=self.request.user)
+    def get(self, request, *args, **kwargs):
+        self.queryset = Mensaje.objects.filter(dirigido_a__autor=request.user)
+        self.object_list = self.get_queryset()
+        context = self.get_context_data()
+        return self.render_to_response(context)
 
 
 
