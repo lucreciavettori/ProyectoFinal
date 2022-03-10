@@ -48,14 +48,17 @@
 
 <h5 style="color:#808000">Deja tus comentarios aqui:</h5>
 
+<script src="ckeditor/ckeditor.js"></script>
+
 <form action="{{request.path}}" method="POST" > {% csrf_token%}
 
-  {{miFormulario.media}}  
+  {{miFormulario.media}}
   {{miFormulario.as_p}}
 
     <FONT FACE="Segoe Print"><input type="submit" value="Enviar" /></FONT>
 </form>
 {% endif %}
+
 
 
 {%endblock contenido%}

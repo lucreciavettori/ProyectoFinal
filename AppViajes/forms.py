@@ -1,4 +1,6 @@
 from django import forms
+from ckeditor.fields import RichTextField
+
 
 # Creamos el formulario para la calse "Mensaje"
 class MensajeFormulario(forms.Form):
@@ -7,4 +9,3 @@ class MensajeFormulario(forms.Form):
         "class": "formulario_ms",
         "placeholder":"Escribe tu mensaje"
     }))
-

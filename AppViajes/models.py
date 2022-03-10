@@ -1,6 +1,5 @@
 from django.db import models
 from ckeditor.fields import RichTextField
-from django.forms import Textarea
 from django.contrib.auth.models import User
 
 #class Usuario(models.Model):
@@ -33,7 +32,7 @@ class Post(models.Model):
 class Mensaje(models.Model):
     id=models.AutoField(primary_key= True)
     autor_mensaje=models.ForeignKey(User, on_delete=models.CASCADE)
-    mensaje=models.TextField('Mensaje',max_length=100,null= False, blank= False)
+    mensaje=RichTextField()
     dirigido_a=models.ForeignKey(Post, on_delete=models.CASCADE)
     fecha_creacion_mensaje=models.DateField('Fecha de creación', auto_now=False, auto_now_add=True)
     
