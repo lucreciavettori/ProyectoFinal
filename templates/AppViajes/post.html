@@ -8,7 +8,7 @@
 
 {% block titulo_principal%}
 <h1>{{ Detalle_post.titulo }}</h1>
-<p>{{ Detalle_post.subtitulo }}</p>
+<h4>{{ Detalle_post.subtitulo }}</h4>
 
 {% endblock titulo_principal %}
 
@@ -25,6 +25,8 @@
 {%endblock busqueda%}
 
 {{Detalle_post.contenido | safe}}
+<FONT FACE="Segoe Print" style="color:#696969"><div style='text-align:right'> Escrito por: {{Detalle_post.autor}} </FONT></div>
+<FONT FACE="Ink free"><div style='text-align:right'>{{Detalle_post.fecha_creacion}}</div></FONT>
 
 <br>
 </br>
@@ -33,27 +35,24 @@
 {% if mensajes %}
 
 {% for mensaje in mensajes %}
-          <h5>{{mensaje}}</h5>
-          <FONT FACE="Ink free">Enviado por: {{mensaje.autor_mensaje}} el: {{mensaje.fecha_creacion_mensaje}}</FONT>
-{% endfor %}
+          <h6>{{mensaje}}</h6>
+          <FONT FACE="Ink free">De: {{mensaje.autor_mensaje}} -{{mensaje.fecha_creacion_mensaje}}</FONT>
+          <br>
+        </br>
+          {% endfor %}
 {% else %}
-
     <h6 p>No hay mensajes registrados.</h6></p>
-
 {% endif %}
 
-<br>
-</br>
 {% if request.user.is_authenticated %}
 
 <h5 style="color:#808000">Deja tus comentarios aqui:</h5>
 
-<form action="{{request.path}}" method="POST" > 
-    {% csrf_token%}
+<form action="{{request.path}}" method="POST" > {% csrf_token%}
  
     {{miFormulario.as_p}}
 
-    <FONT FACE="arial"><input type="submit" value="Enviar" /></FONT>
+    <FONT FACE="Segoe Print"><input type="submit" value="Enviar" /></FONT>
 </form>
 {% endif %}
 

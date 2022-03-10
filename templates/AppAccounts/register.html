@@ -4,15 +4,21 @@
 {% load static %}
 
 {% block titulo_principal%}
-<span class="subheading">Completá los campos debajo para registrarte en nuestra página.</span>
+Registrate!
+<span class="subheading" style="color:#FFFFF0"><strong>Y forma parte de nuestra comunidad</strong></span>
 {% endblock titulo_principal %}
 
 {% block imagen %}
+
+{% static 'AppViajes/assets/img/register.webp'%}
 
 {% endblock imagen %}
 
 {%block contenido%}
 
+<h3 span class="subheading">Completá los campos para registrarte en nuestro blog.</h3></span>
+<br>
+</br>
 <html lang="en">
 
 <head>
@@ -23,8 +29,9 @@
 
 <body>
     <form method="post">{%csrf_token%}
+      <FONT FACE="Franklin Gothic Medium">
         {{form.as_p}}
-
+      </FONT>
         <input type="submit" value="Enviar">
 
     <form>

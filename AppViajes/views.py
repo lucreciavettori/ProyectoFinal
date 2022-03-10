@@ -43,10 +43,7 @@ def detallepost(request, slug):
         if miFormulario.is_valid:
             usuario= request.user
             mensaje =miFormulario.cleaned_data.get("mensaje")
-            mensaje= Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje)
-        else:
-            return super().form_invalid(miFormulario)
-        return super().form_valid(miFormulario)
+            mensaje= Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje,dirigido_a=post)
     miFormulario = MensajeFormulario()
 
     return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes, 'miFormulario': miFormulario})
@@ -54,7 +51,7 @@ def detallepost(request, slug):
 class detallemensajes(ListView):
     model=Mensaje
     template_name='AppViajes/mensajes.html'
-    fields=['mensaje','autor_mensaje']
+    fields=['mensaje','autor_mensaje','fecha_creacion_mensaje']
 
     def get_queryset(self):
         return Mensaje.objects.filter(dirigido_a=self.request.user)

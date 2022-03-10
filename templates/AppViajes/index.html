@@ -28,12 +28,6 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Pages</a></li>
                        
-                        <!-- Si el usuario logeado mostrar el boton Perfiles -->
-                        {% if User.is_authenticated %}
-                            {%if User.is_staff == 1%} 
-                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://127.0.0.1:8000/admin/auth/user/ ">Perfiles</a></li>
-                            {% endif %} 
-                        {% endif %} 
 
                          <!-- Si el usuario NO está logeado NO mostrar el boton Mensajes -->
                         {% if request.user.is_authenticated %}
@@ -52,6 +46,13 @@
 
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Login' %}">Login</a></li>
 
+                        {% endif %}
+
+                        <!-- Si el usuario logeado mostrar el boton Perfiles -->
+                        {% if request.user.is_authenticated %}
+                            {%if request.user.is_staff == 1%} 
+                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://127.0.0.1:8000/admin/auth/user/ ">Perfiles</a></li>
+                            {% endif %} 
                         {% endif %}
 
                         <!-- Si el usuario SI está logeado mostrar el nombre de usuario -->
