@@ -145,8 +145,14 @@
                         {% else%}
                             <h2><center>No existen post registrados con esa descripción<center></h2>
                             
-                        {% endif%}  
+                        {% endif%} 
+                          <!-- boton crear post-->
+
+                        {% if request.user.is_authenticated %}  
+
+                        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'AppViajes:Crear_post' %}">Crear Post →</a></div>
+
+                        {% endif%}   
                         {%endblock contenido%}
                         <!-- Divider-->
 
-        

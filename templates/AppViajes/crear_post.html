@@ -1,0 +1,33 @@
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+{%block busqueda%}
+{%endblock busqueda%}
+
+
+{% block titulo_principal%}
+
+Contá tu experiencia!
+
+{% endblock titulo_principal %}
+
+{% block imagen%}
+{% static 'AppViajes/assets/img/Cuaderno-de-viaje-scaled.jpg'%}
+
+{% endblock imagen %}
+
+
+{%block contenido%}
+<p>
+  <form method="POST"> 
+    {% csrf_token %} 
+    {{ form.media }}
+      {{ form.as_p }} 
+      <input type="submit" class="btn btn-primary text-uppercase" value="Guardar Post">
+      
+    </form>
+
+</p>
+
+{%endblock contenido%}
+

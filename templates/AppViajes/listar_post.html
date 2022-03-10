@@ -1,0 +1,51 @@
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+{%block busqueda%}
+{%endblock busqueda%}
+
+
+{% block titulo_principal%}
+
+
+
+{% endblock titulo_principal %}
+
+{% block imagen%}
+{% static 'AppViajes/assets/img/fondo.jpg'%}
+
+{% endblock imagen %}
+
+
+{%block contenido%}
+<h1></h1>
+
+{% for post in object_list %}
+                                <div class="post-preview">
+                                    <a href= "{% url 'AppViajes:Detalle_post' post.slug %}">
+                                        <h2 class="post-title">
+                                            {{post.titulo}}
+                                        </h2>
+                                        <h5 style="color:#808000" class="post-subtitulo">
+                                            {{post.subtitulo}}
+                                        </h5>
+                                    
+                                    </a>
+                                    <p class="post-meta">
+                                        Escrito por
+                                        <a href="#!">{{post.autor}}</a> el
+                                        {{post.fecha_creacion |date:"d-m-y"}}
+                                    </p>
+                                </div>
+                            {% endfor %}    
+
+</ul>
+<p>
+    <!-- boton crear post-->
+
+    {% if request.user.is_authenticated %}  
+
+    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'AppViajes:Crear_post' %}">Crear Post →</a></div>
+    {% endif%} 
+{%endblock contenido%}
+

@@ -1,5 +1,8 @@
+from dataclasses import fields
 from multiprocessing import AuthenticationError
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from AppViajes.forms import PostForm
 from .models import Post, Mensaje
 from AppViajes.forms import MensajeFormulario
 from django.db.models import Q
@@ -27,6 +30,7 @@ def pages(request):
         
     return render(request, 'AppViajes/index.html', {'posts':posts})
 
+
 def detallepost(request, slug):
     post =Post.objects.get(
         slug = slug
@@ -43,10 +47,8 @@ def detallepost(request, slug):
         if miFormulario.is_valid:
             usuario= request.user
             mensaje =miFormulario.cleaned_data.get("mensaje")
-            mensaje= Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje)
-        else:
-            return super().form_invalid(miFormulario)
-        return super().form_valid(miFormulario)
+            Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje,dirigido_a= post)
+
     miFormulario = MensajeFormulario()
 
     return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes, 'miFormulario': miFormulario})
@@ -57,8 +59,20 @@ class detallemensajes(ListView):
     fields=['mensaje','autor_mensaje']
 
     def get_queryset(self):
-        return Mensaje.objects.filter(dirigido_a=self.request.user)
+        return Mensaje.objects.filter(autor_mensaje=self.request.user)
 
 
+class ListarPost(ListView):
+    model = Post
+    template_name= 'AppViajes/listar_post.html'
+    #queryset= model.objects.all()
+
+
+class CrearPost(CreateView):
+    model= Post
+    form_class= PostForm
+    template_name= 'AppViajes/crear_post.html'
+    success_url = reverse_lazy("AppViajes: listar_post")
+   
 
     
