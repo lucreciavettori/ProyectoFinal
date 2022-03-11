@@ -1,0 +1,30 @@
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+{%block busqueda%}
+{%endblock busqueda%}
+
+
+{% block titulo_principal%}
+
+
+
+{% endblock titulo_principal %}
+
+{% block imagen%}
+{% static 'AppViajes/assets/img/Cuaderno-de-viaje-scaled.jpg'%}
+
+{% endblock imagen %}
+
+
+{%block contenido%}
+<p>
+  <form method="POST"> 
+    {% csrf_token %} 
+    <p> <strong>¿Estás seguro que deseas eliminar el post: {{object}}? </strong></p>
+    <button type="sumbit" class="btn btn-danger">Confirmar</button>
+    </form>
+
+</p>
+
+{%endblock contenido%}

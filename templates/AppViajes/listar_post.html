@@ -1,15 +1,15 @@
 {% extends 'AppViajes/index.html'%}
 {% load static %}
 
-{%block busqueda%}
-{%endblock busqueda%}
-
 
 {% block titulo_principal%}
 
-
+Mis posts:
 
 {% endblock titulo_principal %}
+
+{%block busqueda%}
+{%endblock busqueda%}
 
 {% block imagen%}
 {% static 'AppViajes/assets/img/fondo.jpg'%}
@@ -36,6 +36,8 @@
                                         <a href="#!">{{post.autor}}</a> el
                                         {{post.fecha_creacion |date:"d-m-y"}}
                                     </p>
+                                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary btn-sm" href="{% url 'AppViajes:Editar_post' post.id%}">Editar</a></div>
+                                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary btn-sm" href="{% url 'AppViajes:Eliminar_post' post.id%}">Eliminar</a></div>
                                 </div>
                             {% endfor %}    
 

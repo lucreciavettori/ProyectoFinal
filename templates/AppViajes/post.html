@@ -14,7 +14,13 @@
 
 {% block imagen%}
 
+{% if Detalle_post.imagen %} 
 {{Detalle_post.imagen.url}}
+
+{% else %}
+{% static 'AppViajes/assets/img/inicio2.jpg'%}
+
+{% endif %}
 
 {% endblock imagen %}
 
@@ -50,12 +56,13 @@
 
 <form action="{{request.path}}" method="POST" > 
     {% csrf_token%}
- 
+    {{miFormulario.media}}
     {{miFormulario.as_p}}
 
     <FONT FACE="arial"><input type="submit" value="Enviar" /></FONT>
 </form>
 {% endif %}
 
+<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'AppViajes:Crear_mensaje' %}">Crear Mensaje →</a></div>
 
 {%endblock contenido%}

@@ -1,9 +1,10 @@
 from dataclasses import fields
 from multiprocessing import AuthenticationError
-from django.shortcuts import  render
+from turtle import pos
+from django.shortcuts import  redirect, render
 
 from .models import Post, Mensaje
-from AppViajes.forms import MensajeFormulario
+from AppViajes.forms import MensajeFormulario, PostForm
 from django.db.models import Q
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -64,14 +65,40 @@ class detallemensajes(ListView):
 class ListarPost(ListView):
     model = Post
     template_name= 'AppViajes/listar_post.html'
-    #queryset= model.objects.all()
-
+    #queryset= Post.objects.filter(autor=request.user)
+    def get(self, request, *args, **kwargs):
+        self.queryset = Post.objects.filter(autor=request.user)
+        self.object_list = self.get_queryset()
+        context = self.get_context_data()
+        return self.render_to_response(context)
 
 class CrearPost(CreateView):
     model= Post
-    #form_class= PostForm
+    form_class= PostForm
     success_url = '/AppViajes/listar_post'
-    fields=['titulo', 'subtitulo', 'slug', 'contenido','imagen','autor']
+
+class EditarPost(UpdateView):
+    model= Post
+    template_name= 'AppViajes/post_form.html'
+    form_class= PostForm
+    success_url = '/AppViajes/listar_post'
+
+class EliminarPost(DeleteView):
+    model= Post
+
+    def post (self, request, pk, *args, **kargs):
+        object= Post.objects.get(id=pk)
+        object.save()
+        return redirect ('AppViajes:listar_post')
+            
+
+
+class CrearMensaje(CreateView):
+    model= Mensaje
+    success_url = '/AppViajes/Detalle_post'
+    fields= ['mensaje']
+
+
    
 
     

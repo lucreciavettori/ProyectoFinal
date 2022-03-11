@@ -19,4 +19,7 @@ urlpatterns = [
     path('account/register/', register,name="Register"),
     path('listar_post',ListarPost.as_view(), name='listar_post'),
     path('crear_post',CrearPost.as_view(),name="Crear_post"),
+    path('editar_post/<int:pk>',EditarPost.as_view(),name="Editar_post"),
+    path('eliminar_post/<int:pk>',EliminarPost.as_view(),name="Eliminar_post"),
+    path('crear_mensaje',CrearMensaje.as_view(),name="Crear_mensaje"),
 ]

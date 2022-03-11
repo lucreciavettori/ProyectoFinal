@@ -12,3 +12,7 @@ class MensajeFormulario(forms.Form):
         "placeholder":"Escribe tu mensaje"
     }))
 
+class PostForm(forms.ModelForm):		
+    class Meta:		
+        model= Post
+        fields=['titulo', 'subtitulo', 'slug', 'contenido','autor']
