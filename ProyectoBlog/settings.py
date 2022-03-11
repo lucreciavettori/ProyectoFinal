@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'AppViajes',
     'AppAccounts',
     'ckeditor',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

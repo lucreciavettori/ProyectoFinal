@@ -1,21 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<!--    <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>{% block titulo%} Viajeros {% endblock titulo%} </title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
+        
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
+        
         <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
+        
         <link href="{%static 'AppViajes/css/styles.css' %}" rel="stylesheet" />
     </head>
+-->
     <body>
         <!-- Navigation-->
         
@@ -54,86 +56,65 @@
                 </div>
             </div>
         </nav>
-        
-        <!-- Page Header-->
-       
-            <header class="masthead" style="background-image: url({% block imagen %}{% static 'AppViajes/assets/img/fondo.jpg'%}{% endblock imagen %})">
-                <div class="container position-relative px-4 px-lg-5">
-                    <div class="row gx-4 gx-lg-5 justify-content-center">
-                        <div class="col-md-10 col-lg-8 col-xl-7">
-                            <div class="site-heading">
-                                <h1>{% block titulo_principal%} Nuestro blog</h1>
-                                <span class="subheading">Recorre nuestros post y sorprendete</span>
-                                {% endblock titulo_principal%}
-                            </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+<head>
+
+	{% block content %}
+
+    {% load crispy_forms_tags %}
+	
+	<!--User-->
+	<br><br>
+	<div class="container mx-auto">
+	    <div class="row">
+	    	<div class="col-sm-12 col-md-12 col-lg-3 pb-4">
+		    	<div class="card p-4">
+			    	<h4 class="card-title font-weight-bold text-center">Hola, {{ user.username|title }}</h4>
+			      	<hr>
+			    	<div class="card-text">
+			    		<p class="text-muted mb-0" style="font-size: 12px">Username:</p>
+			    		<p>{{ user.username }}</p>
+			    		<p class="text-muted mb-0" style="font-size: 12px">Nombre:</p>
+				  		<p>{{ user.first_name }} {{ user.last_name }}</p>
+				  		<p class="text-muted mb-0" style="font-size: 12px">Email:</p>
+				  		<p>{{ user.email }} </p>
+                        <p class="text-muted mb-0" style="font-size: 12px">Descripción:</p>
+				  		<p>{{ Profile.descripcion }} </p>
+                        <div class="text-right">
+						    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#profileModal">Editar Perfil</button>
                         </div>
                     </div>
+		    	</div>
+		  	</div>
+		</div>
+	</div>
+
+    <!--Edit user modal-->
+	<div class="modal fade" tabindex="-1" id="profileModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Perfil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ user_form|crispy }}
+                </div>
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </form> 
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-     <!-- boton busqueda post-->
-     {%block busqueda%}
-    <div class="container">
 
-    <div class="row">
-
-      <div class="col-md-12 search">
-
-        <form method="get">
-
-            <div id="custom-search-input">
-
-              <div class="input-group col-md-12">
-
-                <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value = "{{ request.GET.buscar }}">
-
-                <span class="input-group-list">
-
-                  <i class="icon icon-search"></i>
-
-                  <button type="submit" class="boton btn-success" style="background-color:blue; border-color:blue"><FONT FACE="arial">Buscar</button></font>
-
-                </span>
-
-              </div>
-        {%endblock busqueda%}
-        </header>
-        <!-- Main Content-->
-        
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <!-- Post preview-->
-                        <!-- Divider-->
-                        {%block contenido%}
-                        <hr class="my-4" />
-                        {% if posts %}
-                            {% for post in posts %}
-                                <div class="post-preview">
-                                    <a href= "{% url 'AppViajes:Detalle_post' post.slug %}">
-                                        <h2 class="post-title">
-                                            {{post.titulo}}
-                                        </h2>
-                                        <h5 style="color:#808000" class="post-subtitulo">
-                                            {{post.subtitulo}}
-                                        </h5>
-                                    
-                                    </a>
-                                    <p class="post-meta">
-                                        Escrito por
-                                        <a href="#!">{{post.autor}}</a> el
-                                        {{post.fecha_creacion |date:"d-m-y"}}
-                                    </p>
-                                </div>
-                            {% endfor %}    
-                        {% else%}
-                            <h2><center>No existen post registrados con esa descripción<center></h2>
-                            
-                        {% endif%}  
-                        {%endblock contenido%}
-                        <!-- Divider-->
-
-        
+	{% endblock %}

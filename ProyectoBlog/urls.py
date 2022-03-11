@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.static import serve
+from AppViajes.views import inicio
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('AppViajes/', include('AppViajes.urls')),
+    path('',inicio ,name="Inicio"),
         
 ]
 
