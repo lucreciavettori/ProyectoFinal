@@ -4,11 +4,11 @@ from AppViajes.models import *
 # Registramos los modelos
 
 class PostAdmin(admin.ModelAdmin):
-    search_fields= ['autor']
+    search_fields= ['titulo']
     list_display= ('titulo','autor','fecha_creacion')
+    
 
 class MensajeAdmin(admin.ModelAdmin):
-    search_fields= ['autor_mensaje']
     list_display= ('dirigido_a','autor_mensaje','fecha_creacion_mensaje')
 
 

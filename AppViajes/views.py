@@ -16,7 +16,7 @@ def inicio(request):
 
 def pages(request):
     busqueda=request.GET.get("buscar")
-    posts =Post.objects.filter()
+    posts =Post.objects.filter().order_by('-fecha_creacion')
     
     #para la barra de busqueda:
 
@@ -34,7 +34,7 @@ def detallepost(request, slug):
         slug = slug
     )
     
-    mensajes=Mensaje.objects.filter(dirigido_a=post.id).order_by('fecha_creacion_mensaje')
+    mensajes=Mensaje.objects.filter(dirigido_a=post.id).order_by('-fecha_creacion_mensaje')
    
     #para enviar mensaje a traves de formulario:
     
@@ -55,7 +55,7 @@ class detallemensajes(ListView):
     template_name = 'AppViajes/mensajes.html'
 
     def get(self, request, *args, **kwargs):
-        self.queryset = Mensaje.objects.filter(dirigido_a__autor=request.user).order_by('fecha_creacion_mensaje')
+        self.queryset = Mensaje.objects.filter(dirigido_a__autor=request.user).order_by('-fecha_creacion_mensaje')
         self.object_list = self.get_queryset()
         context = self.get_context_data()
         return self.render_to_response(context)

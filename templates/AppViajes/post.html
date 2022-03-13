@@ -18,7 +18,7 @@
 
 {% block imagen%}
 
-{{Detalle_post.imagen.url}}
+{% static 'AppViajes/assets/img/inicio.jpg'%}
 
 {% endblock imagen %}
 
@@ -41,7 +41,8 @@
 
   {% for mensaje in mensajes %}
         {{mensaje|safe}}
-        <p><FONT FACE="Ink free">Enviado por {{mensaje.autor_mensaje}} el {{mensaje.fecha_creacion_mensaje |date:"d-m-y"}}</FONT></p>
+        </br>
+        <FONT FACE="Ink free">Enviado por {{mensaje.autor_mensaje}} el {{mensaje.fecha_creacion_mensaje |date:"d-m-y"}}</FONT>
         <hr class="my-4" />
   {% endfor %}
 
