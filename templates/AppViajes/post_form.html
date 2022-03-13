@@ -24,10 +24,12 @@ Contá tu experiencia!
     {{ form.media }}
       {{ form.as_p }} 
       <input type="submit" class="btn btn-primary text-uppercase" value="Guardar Post">
-      
+     
     </form>
 
 </p>
-
+<a class="btn btn-primary "   href="{% url 'AppViajes:listar_post'%}">CANCELAR </a>
+<p>
+</p>
 {%endblock contenido%}
 

@@ -62,16 +62,14 @@ class detallemensajes(ListView):
         return Mensaje.objects.filter(autor_mensaje=self.request.user)
 
 
+# CRUD de posts:
+
 class ListarPost(ListView):
     model = Post
     template_name= 'AppViajes/listar_post.html'
-    #queryset= Post.objects.filter(autor=request.user)
-    def get(self, request, *args, **kwargs):
-        self.queryset = Post.objects.filter(autor=request.user)
-        self.object_list = self.get_queryset()
-        context = self.get_context_data()
-        return self.render_to_response(context)
-
+    def get_queryset(self):
+        return Post.objects.filter(autor=self.request.user).order_by('-fecha_creacion')
+   
 class CrearPost(CreateView):
     model= Post
     form_class= PostForm
@@ -85,18 +83,10 @@ class EditarPost(UpdateView):
 
 class EliminarPost(DeleteView):
     model= Post
+    success_url = '/AppViajes/listar_post'
 
-    def post (self, request, pk, *args, **kargs):
-        object= Post.objects.get(id=pk)
-        object.save()
-        return redirect ('AppViajes:listar_post')
+
             
-
-
-class CrearMensaje(CreateView):
-    model= Mensaje
-    success_url = '/AppViajes/Detalle_post'
-    fields= ['mensaje']
 
 
    

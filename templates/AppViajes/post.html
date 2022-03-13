@@ -7,20 +7,16 @@
 {% endblock titulo %}
 
 {% block titulo_principal%}
+
 <h1>{{ Detalle_post.titulo }}</h1>
 <p>{{ Detalle_post.subtitulo }}</p>
 
 {% endblock titulo_principal %}
 
+
 {% block imagen%}
 
-{% if Detalle_post.imagen %} 
-{{Detalle_post.imagen.url}}
-
-{% else %}
-{% static 'AppViajes/assets/img/inicio2.jpg'%}
-
-{% endif %}
+{% static 'AppViajes/assets/img/como-empezar-un-blog-de-viajes-1024x512.png'%}
 
 {% endblock imagen %}
 
@@ -63,6 +59,6 @@
 </form>
 {% endif %}
 
-<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'AppViajes:Crear_mensaje' %}">Crear Mensaje →</a></div>
+
 
 {%endblock contenido%}

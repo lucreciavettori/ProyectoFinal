@@ -22,7 +22,7 @@ class Post(models.Model):
     subtitulo=models.CharField('Subtitulo',max_length=30)
     slug=models.CharField('Slug',max_length=100,null= False, blank= False)
     contenido=RichTextField()
-    imagen=models.ImageField('Imagen Referencial', upload_to= 'imagenes_post/', null= True, blank= True)
+    #imagen=models.ImageField('Imagen Referencial', upload_to= 'imagenes_post/', null= True, blank= True)
     #imagen=models.URLField(max_length=300, null= False, blank= False)
     autor=models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_creacion=models.DateField('Fecha de creación', auto_now=False, auto_now_add=True)

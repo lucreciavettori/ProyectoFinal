@@ -1,6 +1,7 @@
 {% extends 'AppViajes/index.html'%}
 {% load static %}
 
+
 {%block busqueda%}
 {%endblock busqueda%}
 
@@ -18,13 +19,18 @@
 
 
 {%block contenido%}
+<link rel="shortcut icon" href="#">
 <p>
   <form method="POST"> 
     {% csrf_token %} 
-    <p> <strong>¿Estás seguro que deseas eliminar el post: {{object}}? </strong></p>
+    <p> <strong>¿Estás seguro que deseas eliminar el post: {{object.titulo}}? </strong></p>
     <button type="sumbit" class="btn btn-danger">Confirmar</button>
+   
     </form>
-
+     
 </p>
+<a class="btn btn-primary "   href="{% url 'AppViajes:listar_post'%}">Cancelar </a>
 
+<p>
+</p>  
 {%endblock contenido%}
