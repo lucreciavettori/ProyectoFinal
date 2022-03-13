@@ -26,7 +26,7 @@
       <!-- Si el usuario SI está logeado mostrar el nombre de usuario -->
       {% if request.user.is_authenticated %}
         <nav class="navbar-brand" id="mainNav">
-        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color:#FFFAF0" >Bienvenido {{user.username}} </a> </li>
+            <FONT FACE="Ink free"><class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" style="color:#FFFAF0" >Bienvenido {{user.username}} </a></FONT>
         {% endif %}  
       
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Pages</a></li>                       
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Blog</a></li>                       
 
                          <!-- Si el usuario NO está logeado NO mostrar el boton Mensajes -->
                         {% if request.user.is_authenticated %}
@@ -57,8 +57,6 @@
                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://127.0.0.1:8000/admin/auth/user/ ">Perfiles</a></li>
                             {% endif %} 
                         {% endif %}
-
-                       
 
                         {% if request.user.is_authenticated %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Logout' %}">Log out</a></li>
@@ -97,7 +95,7 @@
                                         <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value = "{{ request.GET.buscar }}">
                                         <span class="input-group-list">
                                             <i class="icon icon-search"></i>
-                                            <button type="submit" class="boton btn-success" style="background-color:#1E90FF; border-color:#1E90FF">Buscar</button>
+                                            <button type="submit"  class="btn btn-primary text-uppercase">Buscar</button>
                                         </span>
                                     </div>
                                 </div>
@@ -136,7 +134,7 @@
                                     <hr class="my-4" />
                                 {% endfor %}    
                                 {% else%}
-                                    <h2><center>No existen post registrados con esa descripción<center></h2>
+                                    <h2><center>No existen post registrados con esa descripción</center></h2>
                             {% endif%}  
                            
                         {%endblock contenido%}
@@ -144,6 +142,8 @@
                 </div>
             </div>
         </div>
+        </br>
+        </br>
      </body>
 
         
