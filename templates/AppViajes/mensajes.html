@@ -2,8 +2,12 @@
 {% extends 'AppViajes/index.html'%}
 {% load static %}
 
+<!-- lista de mensajes del usuario logeado-->
+
 {% block titulo_principal%}
+
 Mensajes
+
 {% endblock titulo_principal %}
 
 {% block imagen %}
@@ -13,22 +17,22 @@ Mensajes
 {% endblock imagen %}
 
 {%block contenido%}
+
 {% if object_list %}
 <h5 style="color:#808000">Estos son los mensajes que los usuarios hicieron a tus blog:</h5>
-<p>
-</p>
 
     {% for mensaje in object_list %}
-    <p>
-    <h5>{{mensaje.dirigido_a}}</h5>
-   <h6>{{mensaje.mensaje}}</h6>
-    <FONT FACE="Ink free">Enviado por: {{mensaje.autor_mensaje}} el: {{mensaje.fecha_creacion_mensaje}}</FONT>
-    </p>
+    </br>
+    <hr class="my-4" />
+    <h5>Post: {{mensaje.dirigido_a}}</h5>
+    {{mensaje.mensaje |safe}}
+    </br>
+    <FONT FACE="Ink free">Enviado por {{mensaje.autor_mensaje}} el {{mensaje.fecha_creacion_mensaje|date:"d-m-y"}}</FONT>
+    </br>
     {% endfor %}
 {% else %}
-    <h3 p>No hay mensajes registrados en sus posts.</h3></p>
-  {% endif %}
-
+    <h3>No hay mensajes registrados en sus posts.</h3>
+{% endif %}
 
 {%endblock contenido%}
 

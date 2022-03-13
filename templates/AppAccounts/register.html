@@ -16,8 +16,8 @@ Registrate!
 
 {%block contenido%}
 
-<h3 span class="subheading">Completá los campos para registrarte en nuestro blog.</h3></span>
-<br>
+<h3> <span class="subheading">Completá los campos para registrarte en nuestro blog.</span></h3>
+</br>
 </br>
 <html lang="en">
 
@@ -25,18 +25,18 @@ Registrate!
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
-<head>
+</head>
 
 <body>
     <form method="post">{%csrf_token%}
       <FONT FACE="Franklin Gothic Medium">
         {{form.as_p}}
       </FONT>
-        <input type="submit" value="Enviar">
+        <div style='text-align:left'><input type="submit" value="Enviar">
 
-    <form>
-<body>
-<html>
+    </form>
+  </body>
+</html>
 
 {%endblock contenido%}
 

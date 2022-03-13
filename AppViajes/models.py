@@ -2,19 +2,6 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 
-#class Usuario(models.Model):
-#    id=models.AutoField(primary_key= True)
-#    nombre_usuario=models.CharField('Nombre de usuario', max_length=30, null= False, blank= False)
-#    apellido_usuario=models.CharField('Apellido de usuario', max_length=30, null= False, blank= False)
-    #nickname=models.CharField(max_length=30)
-#    email=models.EmailField('Correo electronico',null= False, blank= False)
-    #ciudad=models.CharField(max_length=30)
-    #edad=models.IntegerField()
-    #alta=models.DateField()
-
-#    def __str__(self):
-#        return "{0},{1}".format(self.apellido_usuario, self.nombre_usuario)
-
 class Post(models.Model):
     id=models.AutoField(primary_key= True)
     titulo=models.CharField('Titulo',max_length=50,null= False, blank= False)

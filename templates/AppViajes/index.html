@@ -1,5 +1,8 @@
 {% load static %}
 <!DOCTYPE html>
+
+<!-- template Padre-->
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -16,25 +19,22 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{%static 'AppViajes/css/styles.css' %}" rel="stylesheet" />
     </head>
+    
     <body>
+
         <!-- Navigation-->
         
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                
-
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Pages</a></li>
-                       
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Pages</a></li>                       
 
                          <!-- Si el usuario NO está logeado NO mostrar el boton Mensajes -->
                         {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Mensajes' %}">Mensajes</a></li>
                         {% endif %} 
-
-
 
                         <!-- Si el usuario está logeado NO mostrar el boton Register -->
                         {% if not request.user.is_authenticated %}
@@ -43,26 +43,20 @@
                         
                         <!-- Si el usuario NO está logeado mostrar el boton Login -->
                         {% if not request.user.is_authenticated %}
-
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Login' %}">Login</a></li>
-
                         {% endif %}
 
-                        <!-- Si el usuario logeado mostrar el boton Perfiles -->
+                        <!-- Si el usuario esta logeado mostrar el boton Perfiles -->
                         {% if request.user.is_authenticated %}
                             {%if request.user.is_staff == 1%} 
-                                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://127.0.0.1:8000/admin/auth/user/ ">Perfiles</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://127.0.0.1:8000/admin/auth/user/ ">Perfiles</a></li>
                             {% endif %} 
                         {% endif %}
 
                         <!-- Si el usuario SI está logeado mostrar el nombre de usuario -->
-
                         {% if request.user.is_authenticated %}
-
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4"> Bienvenido {{user.username}} </a> </li>
-
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Logout' %}">Log out</a></li>
-
                         {% endif %}      
                     </ul>
                 </div>
@@ -71,62 +65,54 @@
         
         <!-- Page Header-->
        
-            <header class="masthead" style="background-image: url({% block imagen %}{% static 'AppViajes/assets/img/fondo.jpg'%}{% endblock imagen %})">
-                <div class="container position-relative px-4 px-lg-5">
-                    <div class="row gx-4 gx-lg-5 justify-content-center">
-                        <div class="col-md-10 col-lg-8 col-xl-7">
-                            <div class="site-heading">
-                                <h1>{% block titulo_principal%} Nuestro blog</h1>
-                                <span class="subheading">Recorre nuestros post y sorprendete</span>
-                                {% endblock titulo_principal%}
-                            </div>
+        <header class="masthead" style="background-image: url({% block imagen %}{% static 'AppViajes/assets/img/fondo.jpg'%}{% endblock imagen %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>{% block titulo_principal%} Nuestro blog</h1>
+                            <span class="subheading">Recorre nuestros post y sorprendete</span>
+                            {% endblock titulo_principal%}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <br>
-    <br>
-     <!-- boton busqueda post-->
-     {%block busqueda%}
-    <div class="container">
+            <br>
+            <br>
+            <!-- boton busqueda post-->
 
-    <div class="row">
-
-      <div class="col-md-12 search">
-
-        <form method="get">
-
-            <div id="custom-search-input">
-
-              <div class="input-group col-md-12">
-
-                <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value = "{{ request.GET.buscar }}">
-
-                <span class="input-group-list">
-
-                  <i class="icon icon-search"></i>
-
-                  <button type="submit" class="boton btn-success" style="background-color:blue; border-color:blue"><FONT FACE="arial">Buscar</button></font>
-
-                </span>
-
-              </div>
+            {%block busqueda%}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 search">
+                            <form method="get">
+                                <div id="custom-search-input">
+                                    <div class="input-group col-md-12">
+                                        <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value = "{{ request.GET.buscar }}">
+                                        <span class="input-group-list">
+                                            <i class="icon icon-search"></i>
+                                            <button type="submit" class="boton btn-success" style="background-color:#1E90FF; border-color:#1E90FF">Buscar</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
         {%endblock busqueda%}
         </header>
+       
         <!-- Main Content-->
         
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <!-- Post preview-->
-                        <!-- Divider-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
                         {%block contenido%}
-                        <hr class="my-4" />
-                        {% if posts %}
-                            {% for post in posts %}
-                                <div class="post-preview">
+                            <hr class="my-4" />
+                            {% if posts %}
+                                {% for post in posts %}
+                                    <div class="post-preview">
                                     <a href= "{% url 'AppViajes:Detalle_post' post.slug %}">
                                         <h2 class="post-title">
                                             {{post.titulo}}
@@ -134,20 +120,24 @@
                                         <h5 style="color:#808000" class="post-subtitulo">
                                             {{post.subtitulo}}
                                         </h5>
-                                    
                                     </a>
                                     <p class="post-meta">
                                         Escrito por
                                         <a href="#!">{{post.autor}}</a> el
                                         {{post.fecha_creacion |date:"d-m-y"}}
                                     </p>
-                                </div>
-                            {% endfor %}    
-                        {% else%}
-                            <h2><center>No existen post registrados con esa descripción<center></h2>
-                            
-                        {% endif%}  
+                                    </div>
+                                    <hr class="my-4" />
+                                {% endfor %}    
+                                {% else%}
+                                    <h2><center>No existen post registrados con esa descripción<center></h2>
+                            {% endif%}  
+                           
                         {%endblock contenido%}
-                        <!-- Divider-->
+                        
+                </div>
+            </div>
+        </div>
+     </body>
 
         

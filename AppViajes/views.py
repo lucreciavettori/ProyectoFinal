@@ -1,3 +1,4 @@
+from dataclasses import fields
 from multiprocessing import AuthenticationError
 from django.shortcuts import render
 from .models import Post, Mensaje
@@ -17,14 +18,15 @@ def pages(request):
     busqueda=request.GET.get("buscar")
     posts =Post.objects.filter()
     
+    #para la barra de busqueda:
+
     if busqueda:
         posts = Post.objects.filter(
             Q(titulo__icontains = busqueda) |
             Q(contenido__icontains = busqueda) |
             Q(subtitulo__icontains = busqueda)
              ).distinct()
-
-        
+       
     return render(request, 'AppViajes/index.html', {'posts':posts})
 
 def detallepost(request, slug):
@@ -32,9 +34,9 @@ def detallepost(request, slug):
         slug = slug
     )
     
-    mensajes=Mensaje.objects.filter(dirigido_a=post.id)
+    mensajes=Mensaje.objects.filter(dirigido_a=post.id).order_by('fecha_creacion_mensaje')
    
-    #para el formualrio:
+    #para enviar mensaje a traves de formulario:
     
     if request.method == 'POST':
         miFormulario = MensajeFormulario(request.POST)
@@ -47,17 +49,14 @@ def detallepost(request, slug):
     miFormulario = MensajeFormulario()
 
     return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes, 'miFormulario': miFormulario})
- 
+
 class detallemensajes(ListView):
     model = Mensaje
     template_name = 'AppViajes/mensajes.html'
 
     def get(self, request, *args, **kwargs):
-        self.queryset = Mensaje.objects.filter(dirigido_a__autor=request.user)
+        self.queryset = Mensaje.objects.filter(dirigido_a__autor=request.user).order_by('fecha_creacion_mensaje')
         self.object_list = self.get_queryset()
         context = self.get_context_data()
         return self.render_to_response(context)
 
-
-
-    

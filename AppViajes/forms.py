@@ -1,11 +1,10 @@
 from django import forms
-from ckeditor.fields import RichTextField
+from AppViajes.models import Mensaje
 
+# formulario para la enviar mensaje a post
 
-# Creamos el formulario para la calse "Mensaje"
-class MensajeFormulario(forms.Form):
+class MensajeFormulario(forms.ModelForm):
+	class Meta: 
+		model = Mensaje
+		fields = ['mensaje']       
 
-    mensaje=forms.CharField(widget=forms.Textarea(attrs= {
-        "class": "formulario_ms",
-        "placeholder":"Escribe tu mensaje"
-    }))
