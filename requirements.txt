@@ -5,3 +5,4 @@ django-js-asset==2.0.0
 Pillow==9.0.1
 sqlparse==0.4.2
 tzdata==2021.5
+django-cleanup==6.0.0
