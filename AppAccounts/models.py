@@ -1,10 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from tinymce.models import HTMLField
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from AppViajes.models import Post
-from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 # Create your models here.

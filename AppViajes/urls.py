@@ -10,6 +10,7 @@ app_name = 'AppViajes'
 urlpatterns = [
     path('',inicio ,name="Inicio"),
     path('pages/',pages ,name="Pages"),
+    path('about/',about,name="About"),
     path('mensajes/',detallemensajes.as_view() ,name="Mensajes"),
     path('<str:slug>/', detallepost,name="Detalle_post"),
     path('account/login/', login_request,name="Login"),

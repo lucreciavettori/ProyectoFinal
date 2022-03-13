@@ -60,6 +60,9 @@ class detallemensajes(ListView):
         context = self.get_context_data()
         return self.render_to_response(context)
 
+def about(request):
+    return render (request, 'AppViajes/about.html')
+
 
 
     
