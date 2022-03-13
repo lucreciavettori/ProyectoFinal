@@ -3,7 +3,8 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from AppViajes.views import *
 from AppAccounts.views import login_request, register
-   
+
+
 
 app_name = 'AppViajes' 
 
@@ -21,5 +22,5 @@ urlpatterns = [
     path('crear_post',CrearPost.as_view(),name="Crear_post"),
     path('editar_post/<int:pk>',EditarPost.as_view(),name="Editar_post"),
     path('eliminar_post/<int:pk>',EliminarPost.as_view(),name="Eliminar_post"),
-   
+
 ]

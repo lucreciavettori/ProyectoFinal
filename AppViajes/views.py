@@ -18,8 +18,10 @@ def inicio(request):
 
 def pages(request):
     busqueda=request.GET.get("buscar")
-    posts =Post.objects.filter()
+    posts =Post.objects.filter().order_by('-fecha_creacion')
     
+    #para la barra de busqueda:
+
     if busqueda:
         posts = Post.objects.filter(
             Q(titulo__icontains = busqueda) |
@@ -27,7 +29,6 @@ def pages(request):
             Q(subtitulo__icontains = busqueda)
              ).distinct()
 
-        
     return render(request, 'AppViajes/index.html', {'posts':posts})
 
 
@@ -36,9 +37,9 @@ def detallepost(request, slug):
         slug = slug
     )
     
-    mensajes=Mensaje.objects.filter(dirigido_a=post.id)
+    mensajes=Mensaje.objects.filter(dirigido_a=post.id).order_by('-fecha_creacion_mensaje')
    
-    #para el formualrio:
+    #para enviar mensaje a traves de formulario:
     
     if request.method == 'POST':
         miFormulario = MensajeFormulario(request.POST)
@@ -47,48 +48,45 @@ def detallepost(request, slug):
         if miFormulario.is_valid:
             usuario= request.user
             mensaje =miFormulario.cleaned_data.get("mensaje")
-            Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje,dirigido_a= post)
-
+            mensaje= Mensaje.objects.create(autor_mensaje=usuario,mensaje=mensaje,dirigido_a=post)
     miFormulario = MensajeFormulario()
 
     return render(request, 'AppViajes/post.html', {'Detalle_post':post,'mensajes':mensajes, 'miFormulario': miFormulario})
- 
-class detallemensajes(ListView):
-    model=Mensaje
-    template_name='AppViajes/mensajes.html'
-    fields=['mensaje','autor_mensaje']
 
-    def get_queryset(self):
-        return Mensaje.objects.filter(autor_mensaje=self.request.user)
+class detallemensajes(ListView):
+    model = Mensaje
+    template_name = 'AppViajes/mensajes.html'
+
+    def get(self, request, *args, **kwargs):
+        self.queryset = Mensaje.objects.filter(dirigido_a__autor=request.user).order_by('-fecha_creacion_mensaje')
+        self.object_list = self.get_queryset()
+        context = self.get_context_data()
+        return self.render_to_response(context)
 
 
 # CRUD de posts:
 
 class ListarPost(ListView):
     model = Post
-    template_name= 'AppViajes/listar_post.html'
+    template_name = 'AppViajes/listar_post.html'
+
     def get_queryset(self):
         return Post.objects.filter(autor=self.request.user).order_by('-fecha_creacion')
-   
+
+
 class CrearPost(CreateView):
-    model= Post
-    form_class= PostForm
+    model = Post
+    form_class = PostForm
     success_url = '/AppViajes/listar_post'
+
 
 class EditarPost(UpdateView):
-    model= Post
-    template_name= 'AppViajes/post_form.html'
-    form_class= PostForm
+    model = Post
+    template_name = 'AppViajes/post_form.html'
+    form_class = PostForm
     success_url = '/AppViajes/listar_post'
+
 
 class EliminarPost(DeleteView):
-    model= Post
+    model = Post
     success_url = '/AppViajes/listar_post'
-
-
-            
-
-
-   
-
-    

@@ -1,7 +1,10 @@
 {% extends 'AppViajes/index.html'%}
 {% load static %}
 
+<!-- lista de post-->
+
 {% block titulo%}
+
 {{Detalle_post.titulo}}
 
 {% endblock titulo %}
@@ -9,7 +12,7 @@
 {% block titulo_principal%}
 
 <h1>{{ Detalle_post.titulo }}</h1>
-<p>{{ Detalle_post.subtitulo }}</p>
+<h4>{{ Detalle_post.subtitulo }}</h4>
 
 {% endblock titulo_principal %}
 
@@ -20,45 +23,47 @@
 
 {% endblock imagen %}
 
-
 {%block contenido%}
 
 {%block busqueda%}
+
 {%endblock busqueda%}
 
+<!-- para mostrar quien escribio el post-->
 {{Detalle_post.contenido | safe}}
+<FONT FACE="Segoe Print" style="color:#696969"><div style='text-align:right'> Escrito por {{Detalle_post.autor}} ({{Detalle_post.fecha_creacion | date:"m-y"}}) </div></FONT>
 
-<br>
+<!-- para mostrar los mensajes del post-->
+</br>
 </br>
 <h5 style="color:#808000">Mensajes:</h5>
 
 {% if mensajes %}
 
-{% for mensaje in mensajes %}
-          <h5>{{mensaje}}</h5>
-          <FONT FACE="Ink free">Enviado por: {{mensaje.autor_mensaje}} el: {{mensaje.fecha_creacion_mensaje}}</FONT>
-{% endfor %}
+  {% for mensaje in mensajes %}
+        {{mensaje|safe}}
+        </br>
+        <FONT FACE="Ink free">Enviado por {{mensaje.autor_mensaje}} el {{mensaje.fecha_creacion_mensaje |date:"d-m-y"}}</FONT>
+        <hr class="my-4" />
+  {% endfor %}
+
 {% else %}
-
-    <h6 p>No hay mensajes registrados.</h6></p>
-
+    <h6><p>No hay mensajes registrados.</p></h6>
 {% endif %}
 
-<br>
-</br>
+<!-- para dejar mensajes al post-->
+
 {% if request.user.is_authenticated %}
 
 <h5 style="color:#808000">Deja tus comentarios aqui:</h5>
 
-<form action="{{request.path}}" method="POST" > 
-    {% csrf_token%}
-    {{miFormulario.media}}
-    {{miFormulario.as_p}}
+<form action="{{request.path}}" method="POST" > {% csrf_token%}
 
-    <FONT FACE="arial"><input type="submit" value="Enviar" /></FONT>
+  {{miFormulario.as_p}}
+  {{miFormulario.media}}
+
+  <input type="submit" class="btn btn-primary text-uppercase" value="Enviar">
 </form>
 {% endif %}
-
-
 
 {%endblock contenido%}

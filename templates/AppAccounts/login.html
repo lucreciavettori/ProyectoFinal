@@ -1,6 +1,23 @@
-
-
 <!DOCTYPE html>
+
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+{% block titulo_principal%}
+Ingresá!
+<span class="subheading" style="color:#FFFFF0"><strong>Y podrás distfrutar al maximo de este Blog </strong></span>
+{% endblock titulo_principal %}
+
+{% block imagen %}
+
+{% static 'AppViajes/assets/img/login.webp'%}
+
+{% endblock imagen %}
+
+{%block contenido%}
+
+<h3 span class="subheading">Ingresa tu usuario y contraseña</h3>
+
 <html lang="en">
 
 <head>
@@ -11,10 +28,19 @@
 
 <body>
     <form method="post">{%csrf_token%}
+      <FONT FACE="Franklin Gothic Medium">
         {{form.as_p}}
+      </FONT>
+      <div style='text-align:center'><input type="submit" value="Login"></div>
 
-        <input type="submit" value="Login">
+    </form>
+  </body>
+</html>
 
-    <form>
-<body>
-<html>
+{%endblock contenido%}
+
+{%block busqueda%}
+{%endblock busqueda%}
+
+
+

@@ -3,9 +3,14 @@ from AppViajes.models import *
 
 # Registramos los modelos
 
-admin.site.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    search_fields= ['titulo']
+    list_display= ('titulo','autor','fecha_creacion')
+    
 
-#admin.site.register(Usuario)
+class MensajeAdmin(admin.ModelAdmin):
+    list_display= ('dirigido_a','autor_mensaje','fecha_creacion_mensaje')
 
-admin.site.register(Mensaje)
 
+admin.site.register(Post, PostAdmin)
+admin.site.register(Mensaje, MensajeAdmin)
