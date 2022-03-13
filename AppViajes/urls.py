@@ -4,7 +4,7 @@ from django.contrib.auth.views import LogoutView
 from AppViajes.views import *
 from AppAccounts.views import login_request, register
 
-   
+
 
 app_name = 'AppViajes' 
 
@@ -18,7 +18,9 @@ urlpatterns = [
     path('account/login/', login_request,name="Login"),
     path('account/logout/', LogoutView.as_view(template_name='AppAccounts/logout.html'),name="Logout"),
     path('account/register/', register,name="Register"),
+    path('listar_post',ListarPost.as_view(), name='listar_post'),
+    path('crear_post',CrearPost.as_view(),name="Crear_post"),
+    path('editar_post/<int:pk>',EditarPost.as_view(),name="Editar_post"),
+    path('eliminar_post/<int:pk>',EliminarPost.as_view(),name="Eliminar_post"),
 
-   
-    
 ]

@@ -20,6 +20,7 @@ from django.conf import settings
 from django.views.static import serve
 from django.shortcuts import redirect
 
+
 urlpatterns = [
     path('admin/', admin.site.urls, name='Admin'),
     path('AppViajes/', include('AppViajes.urls')),
