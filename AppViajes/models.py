@@ -22,7 +22,7 @@ class Post(models.Model):
     subtitulo=models.CharField('Subtitulo',max_length=30)
     slug=models.CharField('Slug',max_length=100,null= False, blank= False)
     contenido=RichTextField()
-    imagen=models.ImageField('Imagen Referencial', upload_to= 'imagenes_post/')
+    #imagen=models.ImageField('Imagen Referencial', upload_to= 'imagenes_post/', null= True, blank= True)
     #imagen=models.URLField(max_length=300, null= False, blank= False)
     autor=models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_creacion=models.DateField('Fecha de creación', auto_now=False, auto_now_add=True)
@@ -33,7 +33,7 @@ class Post(models.Model):
 class Mensaje(models.Model):
     id=models.AutoField(primary_key= True)
     autor_mensaje=models.ForeignKey(User, on_delete=models.CASCADE)
-    mensaje=models.TextField('Mensaje',max_length=100,null= False, blank= False)
+    mensaje=RichTextField()
     dirigido_a=models.ForeignKey(Post, on_delete=models.CASCADE)
     fecha_creacion_mensaje=models.DateField('Fecha de creación', auto_now=False, auto_now_add=True)
     

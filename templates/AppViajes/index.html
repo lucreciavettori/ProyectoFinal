@@ -35,6 +35,13 @@
                             {% endif %} 
                         {% endif %} 
 
+                         <!-- Si el usuario logeado mostrar el boton Posts -->
+                         {% if request.user.is_authenticated %}
+                         
+                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:listar_post' %}">Tus Posteos</a></li>
+                        
+                     {% endif %}                        
+
                          <!-- Si el usuario NO está logeado NO mostrar el boton Mensajes -->
                         {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Mensajes' %}">Mensajes</a></li>
@@ -145,8 +152,8 @@
                         {% else%}
                             <h2><center>No existen post registrados con esa descripción<center></h2>
                             
-                        {% endif%}  
+                        {% endif%} 
+
                         {%endblock contenido%}
                         <!-- Divider-->
 
-        

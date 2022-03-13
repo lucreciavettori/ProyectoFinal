@@ -1,0 +1,69 @@
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+
+
+{% block titulo_principal%}
+
+Tu Blog
+
+<span class="subheading">Creá, editá y eliminá tus posteos:</span>
+
+{% endblock titulo_principal %}
+
+{%block busqueda%}
+{%endblock busqueda%}
+
+{% block imagen%}
+{% static 'AppViajes/assets/img/fondo.jpg'%}
+
+{% endblock imagen %}
+
+
+{%block contenido%}
+<h1></h1>
+
+
+    {% for post in object_list %}
+                                <div class="post-preview">
+                                    <a href= "{% url 'AppViajes:Detalle_post' post.slug %}">
+                                        <h2 class="post-title">
+                                            {{post.titulo}}
+                                        </h2>
+                                        <h5 style="color:#808000" class="post-subtitulo">
+                                            {{post.subtitulo}}
+                                        </h5>
+                                    
+                                    </a>
+                                    <div>
+                                    <div> <a class="btn btn-danger btn-sm" style= "float: right;" href="{% url 'AppViajes:Eliminar_post' post.id%}">Eliminar</a></div>    
+                                    <div> <a class="btn btn-primary btn-sm"  style= "float: right;"  href="{% url 'AppViajes:Editar_post' post.id%}">Editar </a></div>
+                                    
+                                    </div>
+                                    <p class="post-meta">
+                                        Escrito por
+                                        <a href="#!">{{post.autor}}</a> el
+                                        {{post.fecha_creacion |date:"d-m-y"}}
+                                       
+                                    </p>
+                                
+                                </div>
+                                <hr>
+                                
+                            {% endfor %}    
+
+</ul>
+<p>
+
+
+    <!-- boton crear post-->
+
+    <p>
+    
+
+    <div align="center"><a class="btn btn-primary text-uppercase"  href="{% url 'AppViajes:Crear_post' %}">Crear Post →</a></div>
+
+   
+    </p>
+
+{%endblock contenido%}
+
