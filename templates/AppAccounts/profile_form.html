@@ -1,0 +1,16 @@
+{% load static %}
+
+    <!--Edit -->
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+        {{user_form.as_table}}
+        <table>
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <button type="button" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Cerrar</a></button>
+        
+    </form>
+
+
+	

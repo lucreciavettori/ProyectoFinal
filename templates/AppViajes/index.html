@@ -31,7 +31,7 @@
                          <!-- Si el usuario está logueado, mostrar el boton Mensajes y el botón Perfiles -->
                         {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Mensajes' %}">Mensajes</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Perfiles' %}">Perfiles</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:profile_view' %}">Profile</a></li>
                         {% endif %} 
 
                         <!-- Si el usuario está logueado, NO mostrar el boton Register -->
