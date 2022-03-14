@@ -1,13 +1,9 @@
-from dataclasses import fields
-from multiprocessing import AuthenticationError
-from turtle import pos
-from django.shortcuts import  redirect, render
+from django.shortcuts import  render
 
 from .models import Post, Mensaje
 from AppViajes.forms import MensajeFormulario, PostForm
 from django.db.models import Q
 from django.views.generic import ListView
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,DeleteView, UpdateView
 
 # Create your views here.
