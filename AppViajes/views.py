@@ -28,7 +28,7 @@ def pages(request):
             Q(contenido__icontains = busqueda) |
             Q(subtitulo__icontains = busqueda)
              ).distinct()
-
+       
     return render(request, 'AppViajes/index.html', {'posts':posts})
 
 
@@ -90,3 +90,8 @@ class EditarPost(UpdateView):
 class EliminarPost(DeleteView):
     model = Post
     success_url = '/AppViajes/listar_post'
+
+
+# Vista about:
+def about(request):
+    return render (request, 'AppViajes/about.html')

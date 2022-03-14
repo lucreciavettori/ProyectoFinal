@@ -1,0 +1,17 @@
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+<head>
+
+	<!--User-->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+        {{user_form.as_table}}
+        <table>
+            <button type="button" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:profile' %}">Editar Perfil</a></button>
+            <!--<a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:profile' %}">Editar Perfil</a>-->
+ 

@@ -35,39 +35,23 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:About' %}">About us</a></li>
 
-                         <!-- Si el usuario logeado mostrar el boton Posts -->
-                         {% if request.user.is_authenticated %}
-
-                             <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:listar_post' %}">Tus Posteos</a></li>
-
-                     {% endif %}
-
-                         <!-- Si el usuario NO está logeado NO mostrar el boton Mensajes -->
+                        <!-- Si el usuario está logueado, mostrar el nombre de usuario y los botones Tus Posteos, Mensajes, Profile y Logout-->
                         {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:listar_post' %}">Tus Posteos</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Mensajes' %}">Mensajes</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:profile_view' %}">Profile</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4"> Bienvenido {{user.username}} </a> </li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Logout' %}">Log out</a></li>
                         {% endif %} 
 
-                        <!-- Si el usuario está logeado NO mostrar el boton Register -->
+                        <!-- Si el usuario no está logueado, mostrar los botones Register y Login-->
                         {% if not request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Register' %}">Register</a></li>
-                        {% endif %}                       
-                        
-                        <!-- Si el usuario NO está logeado mostrar el boton Login -->
-                        {% if not request.user.is_authenticated %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Login' %}">Login</a></li>
-                        {% endif %}
-
-                        <!-- Si el usuario esta logeado mostrar el boton Perfiles -->
-                        {% if request.user.is_authenticated %}
-                            {%if request.user.is_staff == 1%}
-                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="http://127.0.0.1:8000/admin/auth/user/ ">Perfiles</a></li>
-                            {% endif %}
-                        {% endif %}
-
-                        {% if request.user.is_authenticated %}
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Logout' %}">Log out</a></li>
-                        {% endif %}
+                        {% endif %}                       
+     
                     </ul>
                 </div>
             </div>
