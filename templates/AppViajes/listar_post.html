@@ -21,8 +21,7 @@ Tu Blog
 
 {%block contenido%}
 <h1></h1>
-
-
+{% if object_list %}
     {% for post in object_list %}
                                 <div class="post-preview">
                                     <a href= "{% url 'AppViajes:Detalle_post' post.slug %}">
@@ -50,6 +49,13 @@ Tu Blog
                                 <hr>
                                 
                             {% endfor %}    
+
+                            
+                            {% else %}
+                             <h3>No hay posteos registrados.</h3>
+                             {% endif %}
+                            
+
 
 </ul>
 <p>
