@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from .forms import UserRegisterForm, UserForm, UserProfileForm
 from django.contrib.auth.models import User
+from django.views.generic import ListView
 
 #para el profile
 from .models import Profile

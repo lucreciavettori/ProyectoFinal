@@ -1,4 +1,3 @@
-{% load static %}
 
 <head>
   <meta charset="UTF-8">
@@ -6,12 +5,33 @@
   <title>Profile</title>
 <head>
 
-	<!--User-->
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-        {{user_form.as_table}}
-        <table>
-            <button type="button" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:profile' %}">Editar Perfil</a></button>
-            <!--<a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:profile' %}">Editar Perfil</a>-->
- 
+{% extends 'AppViajes/index.html'%}
+{% load static %}
+  
+{% block titulo_principal%}
+Perfil de usuario
+<span class="subheading" style="color:#FFFFF0"><strong>Aquí podrás ver los datos cargados en tu perfil y acceder a su edición</strong></span>
+{% endblock titulo_principal %}
+
+{% block imagen %}
+
+{% static 'AppViajes/assets/img/register.webp'%}
+
+{% endblock imagen %}
+
+{%block contenido%}
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <table>
+    {{user_form.as_table}}
+  <table>
+      <button style="margin: 10px" type="button" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-1" href="{% url 'AppViajes:profile' %}"><FONT SIZE=3 COLOR="white">Editar perfil</FONT></a></button>
+      <button style="margin: 10px" type="button" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-1" href="{% url 'AppViajes:Inicio' %}"><FONT SIZE=3 COLOR="white">Cerrar</FONT></a></button>
+<form>
+
+{%endblock contenido%}
+
+{%block busqueda%}
+{%endblock busqueda%}
+  

@@ -1,16 +1,39 @@
-{% load static %}
 
-    <!--Edit -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Edit</title>
+<head>
+  
+  {% extends 'AppViajes/index.html'%}
+  {% load static %}
+    
+  {% block titulo_principal%}
+  Edición de perfil
+  <span class="subheading" style="color:#FFFFF0"><strong>Podés cambiar los datos de tu perfil. No olvides guardar las modificaciones.</strong></span>
+  {% endblock titulo_principal %}
+  
+  {% block imagen %}
+  
+  {% static 'AppViajes/assets/img/register.webp'%}
+  
+  {% endblock imagen %}
+  
+    {%block contenido%}
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
         {{user_form.as_table}}
         <table>
-            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-            <button type="button" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Cerrar</a></button>
-        
+        <button style="margin: 10px" type="submit" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-1" href="{% url 'AppViajes:Inicio' %}"><FONT SIZE=3 COLOR="white">Guardar cambios</FONT></a></button>
+        <button style="margin: 10px" type="button" class="btn btn-secondary"><a class="nav-link px-lg-3 py-3 py-lg-1" href="{% url 'AppViajes:Inicio' %}"><FONT SIZE=3 COLOR="white">Cerrar</FONT></a></button>
+    
     </form>
 
+    {%endblock contenido%}
 
-	
+{%block busqueda%}
+{%endblock busqueda%}
+
+

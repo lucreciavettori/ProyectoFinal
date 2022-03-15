@@ -35,7 +35,7 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Pages' %}">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:About' %}">About us</a></li>
+                        
 
                         <!-- Si el usuario está logueado, mostrar el nombre de usuario y los botones Tus Posteos, Mensajes, Profile y Logout-->
                         {% if request.user.is_authenticated %}
@@ -50,7 +50,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Register' %}">Register</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:Login' %}">Login</a></li>
                         {% endif %}                       
-     
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'AppViajes:About' %}">About us</a></li>
                     </ul>
                 </div>
             </div>
