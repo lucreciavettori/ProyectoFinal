@@ -12,7 +12,7 @@
 1. Creación de modelos y migración de datos de AppViajes: Lucrecia - Florencia
 2. Importación de Boostrap: Lucrecia - Florencia
 3. Armado de vista de template padre y herencias: Lucrecia - Florencia
-4. Vistas inicio, pages (con barra de búsuqeda), formualario mensaje, detalle mensaje: Lucrecia
+4. Vistas inicio, pages (con barra de búsuqeda), formulario mensaje, detalle mensaje: Lucrecia
 5. Vistas listar, crear, editar y eliminar posts: Florencia
 6. Vista About Us: Emmanuel.
 
@@ -24,10 +24,10 @@
 
 
 ***
-## Sobre nuestro blog: 
+# Sobre nuestro blog: 
 Blog Viajeros es una página web que permite compartir historias de viajes.
 
-### Funcionalidades:
+## Funcionalidades:
 **Usuario anónimo:**
 
 Podrás:
