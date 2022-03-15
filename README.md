@@ -31,15 +31,18 @@ Blog Viajeros es una página web que permite compartir historias de viajes.
 **Usuario anónimo:**
 
 Podrás:
-1. Ingresar a nuestro blog a visualizar las las experiencias de todos los usuarios, accediendo a una barra que te facilitará tu búsqueda.
+1. Ingresar a nuestro blog a visualizar las experiencias de todos los usuarios, accediendo a una barra de búsqueda que te facilitará encontrar el post que estás buscando.
+2. Registrarte para acceder a las funcionalidades como usuario logueado.
+3. Conocer sobre los creadores del blog (About Us)
 
 **Usuario logueado:**
 
 Podrás:
- 1. Ingresar a nuestro blog a visualizar las las experiencias de todos los usuarios, accediendo a una barra que te facilitará tu búsqueda.
+ 1. Ingresar a nuestro blog a visualizar las experiencias de todos los usuarios, accediendo a una barra de búsqueda que te facilitará encontrar el post que estás buscando.
  2. Dejar mensajes en los posts de otros usuarios.
  3. Acceder al listado de tus posts.
  4. Crear/editar/eliminar tus posts
  5. Ver los mensajes que otros usuarios hicieron en tus posts.
  6. Editar tu perfil de usuario.
+ 7. Conocer sobre los creadores del blog (About Us)
 
